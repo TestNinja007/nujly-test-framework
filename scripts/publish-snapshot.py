@@ -11,7 +11,7 @@ Used by .github/workflows/performance.yml, and runnable by hand against a
 local Grafana:
 
     python3 scripts/publish-snapshot.py --grafana http://127.0.0.1:3000 \\
-        --user admin --password <password> --uid nudge-load --name "A spike"
+        --user admin --password <password> --uid nujly-load --name "A spike"
 """
 
 import argparse
@@ -142,7 +142,7 @@ def main():
     parser.add_argument('--grafana', required=True)
     parser.add_argument('--user', required=True)
     parser.add_argument('--password', required=True)
-    parser.add_argument('--uid', required=True, help='Dashboard uid, e.g. nudge-load')
+    parser.add_argument('--uid', required=True, help='Dashboard uid, e.g. nujly-load')
     parser.add_argument('--name', default='Snapshot')
     parser.add_argument(
         '--window',

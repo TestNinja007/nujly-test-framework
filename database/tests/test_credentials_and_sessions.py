@@ -258,7 +258,7 @@ def test_the_migration_ledger_records_every_file_that_exists(db):
     repo = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     candidates = [
         os.environ.get("APP_MIGRATIONS_DIR"),
-        os.path.join(repo, "..", "alarm-configurator", "db", "migrations"),
+        os.path.join(repo, "..", "nujly", "db", "migrations"),
         os.path.join(repo, "app", "db", "migrations"),
     ]
     migrations_dir = next(

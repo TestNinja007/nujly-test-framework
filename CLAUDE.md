@@ -132,10 +132,10 @@ date the code ran.
 5. **`performance.yml` has never run.** It exists and has no run history, so
    the k6 profiles have only local results behind them.
 6. **The compose stack has run only in CI.** The application's `container` job
-   (TestNinja007/alarm-configurator#25) builds and starts it, after fixing four
+   (TestNinja007/nujly#25) builds and starts it, after fixing four
    things that would have stopped it. Nobody has run it on a developer's
    machine yet. Production runs its `api` image: Render switched from the Node
-   runtime on 13 November 2026 (TestNinja007/alarm-configurator#29).
+   runtime on 13 November 2026 (TestNinja007/nujly#29).
 
 ### Written up for sharing
 
@@ -160,18 +160,25 @@ reading list is the only step needed to include it.
 
 ## Conventions that are easy to get wrong
 
-**The product is Nujly; the identifiers still say nudge.** It was renamed
-from Nudge on 11 November 2026, by the rule in the application's README: only
-what a person sees carries the name. Other things keep the old name on
-purpose, because queries, workflow steps and links depend on them:
+**The product is nujly, in lower case, and so is everything named after it.**
+It was renamed from Nudge on 11 November 2026, and on 17 November the rest
+followed: this repository (`TestNinja007/nujly-test-framework`), the
+application's (`TestNinja007/nujly`), their folders, the CI database (`nujly`,
+role `nujly_app`) and the observability identifiers. The name is written with
+a small n even at the start of a sentence. The application's `CLAUDE.md` lists
+what still says alarm-configurator, and why.
 
-- the Prometheus job (`nudge`) and its `service` label;
-- the dashboard's uid (`nudge-load`), file and tags;
+`performance.yml` refers to these by name, so renaming one alone breaks it:
+
+- the Prometheus job (`nujly`) and its `service` label (`nujly-api`);
+- the dashboard's uid (`nujly-load`), file and tags;
 - the Grafana provider name;
 - the container names;
-- `NUDGE_DASHBOARDS`.
+- `NUJLY_DASHBOARDS`.
 
-Renaming them for tidiness breaks `performance.yml`.
+The results site moved with the repository, to
+<https://testninja007.github.io/nujly-test-framework/>. GitHub redirects the
+old repository address, but not the old site.
 
 **Spec naming decides where it runs.** `*.api.spec.ts` runs without a browser;
 `*.ui.spec.ts` runs on all three engines. A file matching neither is silently
@@ -196,7 +203,7 @@ than hardcoding them, or the spec starts passing for the wrong reason.
 ## After adding a spec
 
 ```bash
-python scripts/traceability.py --app ../alarm-configurator
+python scripts/traceability.py --app ../nujly
 python scripts/mark-automated.py
 ```
 
@@ -213,7 +220,7 @@ commits.
 npm test                      # Playwright: api, then browsers, then @serial
 npx tsc --noEmit              # this suite's types
 cd database && python -m pytest tests     # the database layer
-cd ../alarm-configurator && npm run lint && npm run typecheck && npm test
+cd ../nujly && npm run lint && npm run typecheck && npm test
 ```
 
 Both stacks, every time. A green Playwright run says nothing about whether the

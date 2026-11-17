@@ -1,6 +1,6 @@
 # Defect register
 
-Every defect found in Nujly so far, with how it was found, what caused it and
+Every defect found in nujly so far, with how it was found, what caused it and
 what now guards it.
 
 The register lives here rather than in the application repository because it is
@@ -11,7 +11,7 @@ the testing is actually worth.
 
 Defects are filed against the product. Where a fix exists the commit is named,
 and lives in
-[TestNinja007/alarm-configurator](https://github.com/TestNinja007/alarm-configurator).
+[TestNinja007/nujly](https://github.com/TestNinja007/nujly).
 
 ## How these are classified
 
