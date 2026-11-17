@@ -1,7 +1,7 @@
 apiVersion: 1
 
 providers:
-  - name: Nudge
+  - name: nujly
     folder: ''
     type: file
     disableDeletion: false
@@ -10,6 +10,6 @@ providers:
       # Absolute, and therefore machine-specific, so it is read from the
       # environment rather than committed. Point it at
       # k6/observability/grafana/provisioning/dashboards, which holds
-      # nudge.json — the same dashboard the container path provisions, so the
+      # nujly.json — the same dashboard the container path provisions, so the
       # two runs show the same panels rather than drifting apart.
-      path: $__env{NUDGE_DASHBOARDS}
+      path: $__env{NUJLY_DASHBOARDS}

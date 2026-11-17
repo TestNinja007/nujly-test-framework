@@ -11,7 +11,7 @@ where a documented rule outlived the behaviour it described.
 So this reads the three and writes the fourth. Run it after changing any of
 them:
 
-    python3 scripts/traceability.py --app ../alarm-configurator
+    python3 scripts/traceability.py --app ../nujly
 """
 
 import argparse
@@ -68,7 +68,7 @@ def cases_from_mapping(path):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--app', default=os.path.join(HERE, '..', 'alarm-configurator'))
+    parser.add_argument('--app', default=os.path.join(HERE, '..', 'nujly'))
     parser.add_argument('--out', default=os.path.join(HERE, 'docs', 'traceability.md'))
     args = parser.parse_args()
 

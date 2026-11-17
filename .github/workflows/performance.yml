@@ -37,20 +37,20 @@ jobs:
       postgres:
         image: postgres:18-alpine
         env:
-          POSTGRES_USER: alarm_app
-          POSTGRES_PASSWORD: alarm_app
-          POSTGRES_DB: alarm_configurator
+          POSTGRES_USER: nujly_app
+          POSTGRES_PASSWORD: nujly_app
+          POSTGRES_DB: nujly
         ports:
           - 5432:5432
         options: >-
-          --health-cmd "pg_isready -U alarm_app"
+          --health-cmd "pg_isready -U nujly_app"
           --health-interval 5s
           --health-timeout 5s
           --health-retries 10
 
     env:
       BASE_URL: http://127.0.0.1:8080
-      DATABASE_URL: postgresql://alarm_app:alarm_app@127.0.0.1:5432/alarm_configurator
+      DATABASE_URL: postgresql://nujly_app:nujly_app@127.0.0.1:5432/nujly
 
     steps:
       - name: Check out the framework
@@ -59,7 +59,7 @@ jobs:
       - name: Check out the application under test
         uses: actions/checkout@v7
         with:
-          repository: TestNinja007/alarm-configurator
+          repository: TestNinja007/nujly
           path: app
           ref: main
 
@@ -133,8 +133,8 @@ jobs:
           # check that runs immediately proves nothing either way.
           for i in $(seq 1 20); do
             health=$(curl -sS 'http://127.0.0.1:9090/api/v1/targets' \
-              | python3 -c "import json,sys;print(next((t['health'] for t in json.load(sys.stdin)['data']['activeTargets'] if t['labels'].get('job')=='nudge'),'missing'))")
-            echo "nudge target: $health"
+              | python3 -c "import json,sys;print(next((t['health'] for t in json.load(sys.stdin)['data']['activeTargets'] if t['labels'].get('job')=='nujly'),'missing'))")
+            echo "nujly target: $health"
             if [ "$health" = "up" ]; then exit 0; fi
             sleep 2
           done
@@ -164,12 +164,12 @@ jobs:
             "https://dl.grafana.com/oss/release/grafana-${GRAFANA_VERSION}.linux-amd64.tar.gz"
           tar xzf grafana.tar.gz
           mv "grafana-v${GRAFANA_VERSION}" grafana 2>/dev/null || mv "grafana-${GRAFANA_VERSION}" grafana
-          cp k6/observability/native/grafana/datasources/prometheus.yml grafana/conf/provisioning/datasources/nudge.yml
-          cp k6/observability/native/grafana/dashboards/dashboards.yml  grafana/conf/provisioning/dashboards/nudge.yml
+          cp k6/observability/native/grafana/datasources/prometheus.yml grafana/conf/provisioning/datasources/nujly.yml
+          cp k6/observability/native/grafana/dashboards/dashboards.yml  grafana/conf/provisioning/dashboards/nujly.yml
           cd grafana
           # Ephemeral and bound to the runner. The password exists only for the
           # life of this job and reaches nothing outside it.
-          NUDGE_DASHBOARDS="${GITHUB_WORKSPACE}/k6/observability/grafana/provisioning/dashboards" \
+          NUJLY_DASHBOARDS="${GITHUB_WORKSPACE}/k6/observability/grafana/provisioning/dashboards" \
           GF_SECURITY_ADMIN_PASSWORD=ci-ephemeral \
           GF_SERVER_HTTP_ADDR=127.0.0.1 \
           ./bin/grafana server --homepath "$(pwd)" > ../grafana.log 2>&1 &
@@ -194,8 +194,8 @@ jobs:
           python3 scripts/publish-snapshot.py \
             --grafana http://127.0.0.1:3000 \
             --user admin --password ci-ephemeral \
-            --uid nudge-load \
-            --name "Nujly — ${PROFILE} — $(date -u +%Y-%m-%d\ %H:%M) UTC" \
+            --uid nujly-load \
+            --name "nujly — ${PROFILE} — $(date -u +%Y-%m-%d\ %H:%M) UTC" \
             | tee snapshot.txt
           url=$(grep -oE 'https?://\S+' snapshot.txt | tail -1 || true)
           echo "url=$url" >> "$GITHUB_OUTPUT"

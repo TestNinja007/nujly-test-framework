@@ -33,20 +33,20 @@ jobs:
       postgres:
         image: postgres:18-alpine
         env:
-          POSTGRES_USER: alarm_app
-          POSTGRES_PASSWORD: alarm_app
-          POSTGRES_DB: alarm_configurator
+          POSTGRES_USER: nujly_app
+          POSTGRES_PASSWORD: nujly_app
+          POSTGRES_DB: nujly
         ports:
           - 5432:5432
         options: >-
-          --health-cmd "pg_isready -U alarm_app"
+          --health-cmd "pg_isready -U nujly_app"
           --health-interval 5s
           --health-timeout 5s
           --health-retries 10
 
     env:
       BASE_URL: http://127.0.0.1:8080
-      DATABASE_URL: postgresql://alarm_app:alarm_app@127.0.0.1:5432/alarm_configurator
+      DATABASE_URL: postgresql://nujly_app:nujly_app@127.0.0.1:5432/nujly
 
     steps:
       - name: Check out the framework
@@ -58,7 +58,7 @@ jobs:
       - name: Check out the application under test
         uses: actions/checkout@v7
         with:
-          repository: TestNinja007/alarm-configurator
+          repository: TestNinja007/nujly
           path: app
           ref: main
 
@@ -184,20 +184,20 @@ jobs:
       postgres:
         image: postgres:18-alpine
         env:
-          POSTGRES_USER: alarm_app
-          POSTGRES_PASSWORD: alarm_app
-          POSTGRES_DB: alarm_configurator
+          POSTGRES_USER: nujly_app
+          POSTGRES_PASSWORD: nujly_app
+          POSTGRES_DB: nujly
         ports:
           - 5432:5432
         options: >-
-          --health-cmd "pg_isready -U alarm_app"
+          --health-cmd "pg_isready -U nujly_app"
           --health-interval 5s
           --health-timeout 5s
           --health-retries 10
 
     env:
       BASE_URL: http://127.0.0.1:8080
-      DATABASE_URL: postgresql://alarm_app:alarm_app@127.0.0.1:5432/alarm_configurator
+      DATABASE_URL: postgresql://nujly_app:nujly_app@127.0.0.1:5432/nujly
       SPEECH_URL: http://127.0.0.1:8090
       SPEECH_SERVICE_TOKEN: ci-speech-service-token
 
@@ -208,7 +208,7 @@ jobs:
       - name: Check out the application under test
         uses: actions/checkout@v7
         with:
-          repository: TestNinja007/alarm-configurator
+          repository: TestNinja007/nujly
           path: app
           ref: main
 

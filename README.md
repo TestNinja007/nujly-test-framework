@@ -1,15 +1,15 @@
-# alarm-test-framework
+# nujly-test-framework
 
-[![Suite](https://github.com/TestNinja007/alarm-test-framework/actions/workflows/ci.yml/badge.svg)](https://github.com/TestNinja007/alarm-test-framework/actions/workflows/ci.yml)
+[![Suite](https://github.com/TestNinja007/nujly-test-framework/actions/workflows/ci.yml/badge.svg)](https://github.com/TestNinja007/nujly-test-framework/actions/workflows/ci.yml)
 
-**[Read the latest run →](https://testninja007.github.io/alarm-test-framework/)**
+**[Read the latest run →](https://testninja007.github.io/nujly-test-framework/)**
 — every spec, every engine, with traces. Published from `main` on each run, and
 merged from the four matrix jobs so one page holds the lot.
 
 > The badge is one bit of information. The report is the evidence behind it,
 > which is the part worth reading.
 
-Automated tests for **Nujly** ([alarm-configurator](https://github.com/TestNinja007/alarm-configurator)),
+Automated tests for **[nujly](https://github.com/TestNinja007/nujly)**,
 kept in a repository of their own.
 
 The separation is deliberate. Tests here are written against the application's
@@ -112,7 +112,7 @@ browser, `*.ui.spec.ts` runs in Chromium, Firefox and WebKit.
 Two generated things go stale, and both are one command:
 
 ```bash
-python scripts/traceability.py --app ../alarm-configurator
+python scripts/traceability.py --app ../nujly
 python scripts/mark-automated.py
 ```
 

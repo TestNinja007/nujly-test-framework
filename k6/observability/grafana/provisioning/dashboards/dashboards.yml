@@ -1,7 +1,7 @@
 apiVersion: 1
 
 providers:
-  - name: Nudge
+  - name: nujly
     folder: ''
     type: file
     disableDeletion: false
