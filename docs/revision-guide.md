@@ -1,4 +1,4 @@
-# Revision guide — the testing work on Nujly
+# Revision guide — the testing work on nujly
 
 A guide for *learning* the testing work, not for operating it. Every decision
 is written as **what was done → why → what was rejected**, and points at the
@@ -40,12 +40,12 @@ the answer back — explaining is the test of understanding, recognising is not.
 
 ## 1. The shape of it
 
-**What was tested.** Nujly, an alarm configurator: groups of alarms, recurrence
+**What was tested.** nujly, an alarm configurator: groups of alarms, recurrence
 rules, spoken messages, notifications in the browser. It was built
 *deliberately as a system under test*, with **34 documented behavioural rules**
 (R-01 to R-34) and **8 architectural rules** (A-01 to A-08), so there is a
 written definition of "correct" to test against.
-→ `alarm-configurator/README.md`
+→ `nujly/README.md`
 
 **Two repositories.** The application and the test framework are separate.
 
@@ -87,7 +87,7 @@ right design for an application with one owner.
 
 1. Why is the test framework in a separate repository from the application?
 2. What is the difference between what the two test stacks are for?
-3. What makes Nujly a "deliberate" system under test, and why does that matter?
+3. What makes nujly a "deliberate" system under test, and why does that matter?
 
 ---
 
@@ -626,7 +626,7 @@ useful thing in that report.
   times. Three of four test results downloaded; one upload was corrupt. Re-running
   only the failed job never re-uploads the corrupt one. Re-running *all* jobs did.
 - **A hardcoded path can make a test never run in CI.** One test looked for the
-  application at `../alarm-configurator`; CI checks it out at `app/`. It skipped
+  application at `../nujly`; CI checks it out at `app/`. It skipped
   on every CI run and passed locally — found only by *reading the CI log*, since
   nothing went red.
 
@@ -705,7 +705,7 @@ wrong way. They now live in `CLAUDE.md` in each repository.
 
 ## 12. Testing a microservice — the speech service
 
-→ `alarm-configurator/src/speech/`, `alarm-configurator/src/api/src/speech/`,
+→ `nujly/src/speech/`, `nujly/src/api/src/speech/`,
 `database/tests/test_speech_service.py`
 
 ### Why there is one at all
@@ -851,18 +851,18 @@ Three things worth being able to explain:
 Upload these with this guide. Paths are relative to each repository.
 
 **The rules being tested**
-- `alarm-configurator/README.md` — the 34 behavioural rules
+- `nujly/README.md` — the 34 behavioural rules
 
 **The reasoning, in full**
-- `alarm-test-framework/README.md`
-- `alarm-test-framework/CLAUDE.md`
-- `alarm-test-framework/docs/defects/README.md`
-- `alarm-test-framework/docs/test-summary.md`
-- `alarm-test-framework/docs/traceability.md`
-- `alarm-test-framework/docs/test-cases/not-automated.md`
-- `alarm-test-framework/k6/README.md`
-- `alarm-test-framework/k6/results/2026-10-05-first-run.md`
-- `alarm-test-framework/k6/results/2026-10-10-instrumented-run.md`
+- `nujly-test-framework/README.md`
+- `nujly-test-framework/CLAUDE.md`
+- `nujly-test-framework/docs/defects/README.md`
+- `nujly-test-framework/docs/test-summary.md`
+- `nujly-test-framework/docs/traceability.md`
+- `nujly-test-framework/docs/test-cases/not-automated.md`
+- `nujly-test-framework/k6/README.md`
+- `nujly-test-framework/k6/results/2026-10-05-first-run.md`
+- `nujly-test-framework/k6/results/2026-10-10-instrumented-run.md`
 
 **Code that shows the ideas**
 - `tests/security/security.api.spec.ts` — 404 vs 403, CSRF
@@ -876,13 +876,13 @@ Upload these with this guide. Paths are relative to each repository.
 - `database/tests/test_speech_service.py` — each service owning its own data
 
 **The speech service — testing a microservice**
-- `alarm-configurator/src/api/src/speech/client.ts` — calling another service, and every way it can fail
-- `alarm-configurator/src/api/src/speech/client.test.ts` — a dependency failing, on demand
-- `alarm-configurator/src/api/src/speech/client.pact.test.ts` — the contract, from the consumer
-- `alarm-configurator/src/speech/src/contract.pact.test.ts` — the contract, from the provider
-- `alarm-configurator/src/speech/src/server.ts` — the service itself
-- `alarm-configurator/src/speech/src/server.test.ts` — the service in isolation
+- `nujly/src/api/src/speech/client.ts` — calling another service, and every way it can fail
+- `nujly/src/api/src/speech/client.test.ts` — a dependency failing, on demand
+- `nujly/src/api/src/speech/client.pact.test.ts` — the contract, from the consumer
+- `nujly/src/speech/src/contract.pact.test.ts` — the contract, from the provider
+- `nujly/src/speech/src/server.ts` — the service itself
+- `nujly/src/speech/src/server.test.ts` — the service in isolation
 
 Both repositories are public on GitHub:
-[alarm-test-framework](https://github.com/TestNinja007/alarm-test-framework) ·
-[alarm-configurator](https://github.com/TestNinja007/alarm-configurator)
+[nujly-test-framework](https://github.com/TestNinja007/nujly-test-framework) ·
+[nujly](https://github.com/TestNinja007/nujly)

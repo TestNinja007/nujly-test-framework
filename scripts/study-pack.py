@@ -29,7 +29,7 @@ GUIDE = os.path.join(HERE, 'docs', 'revision-guide.md')
 OUT = os.path.join(HERE, 'study-pack')
 
 # Paths in the guide are written either from the folder holding both
-# repositories ("alarm-configurator/README.md") or from this repository
+# repositories ("nujly/README.md") or from this repository
 # ("src/fixtures.ts"). Both are tried, in that order.
 ROOTS = (PROJECT, HERE)
 

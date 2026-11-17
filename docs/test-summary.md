@@ -179,9 +179,9 @@ question about scope, not a piece of outstanding work.
 
 | | |
 | --- | --- |
-| Latest run, every engine | <https://testninja007.github.io/alarm-test-framework/> |
+| Latest run, every engine | <https://testninja007.github.io/nujly-test-framework/> |
 | Traceability matrix | [`docs/traceability.md`](traceability.md) |
 | Defect register | [`docs/defects/`](defects/) |
 | Load test write-up | [`k6/results/`](../k6/results/2026-10-05-first-run.md) |
 | Performance dashboard | <https://snapshots.raintank.io/dashboard/snapshot/4UAF0SpTmgYtP0SNrPMBVGOujoMth1qI> |
-| CI | <https://github.com/TestNinja007/alarm-test-framework/actions> |
+| CI | <https://github.com/TestNinja007/nujly-test-framework/actions> |

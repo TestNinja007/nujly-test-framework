@@ -5,14 +5,14 @@ global:
   evaluation_interval: 5s
 
 scrape_configs:
-  - job_name: nudge
+  - job_name: nujly
     metrics_path: /metrics
     static_configs:
       # The application runs on the host; this container reaches it through
       # the gateway alias declared in the compose file.
       - targets: ['host.docker.internal:8080']
         labels:
-          service: nudge-api
+          service: nujly-api
 
   - job_name: prometheus
     static_configs:

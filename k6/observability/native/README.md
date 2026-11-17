@@ -43,20 +43,20 @@ Grafana needs the two provisioning files copied into its own `conf/provisioning`
 tree, and one environment variable so it can find the dashboard:
 
 ```bash
-cp native/grafana/datasources/prometheus.yml  <grafana>/conf/provisioning/datasources/nudge.yml
-cp native/grafana/dashboards/dashboards.yml   <grafana>/conf/provisioning/dashboards/nudge.yml
+cp native/grafana/datasources/prometheus.yml  <grafana>/conf/provisioning/datasources/nujly.yml
+cp native/grafana/dashboards/dashboards.yml   <grafana>/conf/provisioning/dashboards/nujly.yml
 ```
 
 ```bash
-NUDGE_DASHBOARDS="<repo>/k6/observability/grafana/provisioning/dashboards" \
+NUJLY_DASHBOARDS="<repo>/k6/observability/grafana/provisioning/dashboards" \
 GF_SERVER_HTTP_ADDR=127.0.0.1 \
 GF_AUTH_ANONYMOUS_ENABLED=true \
 GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer \
 ./grafana.exe server --homepath <grafana>
 ```
 
-`NUDGE_DASHBOARDS` points at the *container* path's dashboard directory on
-purpose, so both ways of running the stack provision the same `nudge.json` and
+`NUJLY_DASHBOARDS` points at the *container* path's dashboard directory on
+purpose, so both ways of running the stack provision the same `nujly.json` and
 cannot drift apart.
 
 Anonymous viewing is on because this binds to `127.0.0.1` and the only thing it
@@ -65,7 +65,7 @@ without a password, which is the point of a local dashboard. Do not carry that
 setting to anything reachable from elsewhere.
 
 The dashboard is then at
-**http://127.0.0.1:3000/d/nudge-load/nujly-under-load**, and
+**http://127.0.0.1:3000/d/nujly-load/nujly-under-load**, and
 `?from=now-15m&to=now&kiosk` drops the chrome if you want to screenshot it.
 
 ## Checking it works before running a load test
@@ -78,7 +78,7 @@ nothing has happened yet, which is worth ruling out first:
 curl -s http://127.0.0.1:9090/api/v1/targets | grep -o '"health":"[a-z]*"'
 ```
 
-The `nudge` job reports `unknown` until the first scrape completes — five
+The `nujly` job reports `unknown` until the first scrape completes — five
 seconds — so give it a moment before concluding anything.
 
 ```bash
@@ -113,7 +113,7 @@ what makes it the right artefact for CI: the runner is destroyed minutes later.
 ```bash
 python3 scripts/publish-snapshot.py \
   --grafana http://127.0.0.1:3000 --user admin --password <password> \
-  --uid nudge-load --window now-30m --no-external
+  --uid nujly-load --window now-30m --no-external
 ```
 
 Drop `--no-external` to publish to Grafana's public snapshot service instead
