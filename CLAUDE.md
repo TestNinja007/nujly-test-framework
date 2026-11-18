@@ -77,7 +77,7 @@ If this changes, the harness needs one thing: a `tier` on `POST /test/users`.
 
 ## Where things stand
 
-*Last updated 13 November 2026. Update this when it stops being true — it is the
+*Last updated 18 November 2026. Update this when it stops being true — it is the
 first thing a session with no memory of the work should read.*
 
 Both halves of the agreed shape are **built and green**.
@@ -107,6 +107,13 @@ design.** The newest, DEF-23, was caught by the nightly run: TC39 failed on 1
 November 2026 with no code changed, because R-07 had come to depend on the
 date the code ran.
 
+**`performance.yml` runs every Sunday** at 04:00 UTC with the `load` profile,
+against the application started inside the job, and by hand with any profile.
+It has run every week since 11 October 2026. A green run says it ran, not that
+the thresholds held: the k6 step continues on error, and the thresholds are in
+the run's log and summary. The runs of 8 and 15 November met every threshold,
+with no failed requests.
+
 ### Open, in the order I would pick them up
 
 1. **Two features have no requirements and no designed test cases** —
@@ -129,9 +136,7 @@ date the code ran.
 4. **`docs/test-cases/core-cases.csv` is generated and not imported.** It holds
    TC1–TC10 for TestQuality; importing it creates records in the user's test
    management and is their action, not mine.
-5. **`performance.yml` has never run.** It exists and has no run history, so
-   the k6 profiles have only local results behind them.
-6. **The compose stack has run only in CI.** The application's `container` job
+5. **The compose stack has run only in CI.** The application's `container` job
    (TestNinja007/nujly#25) builds and starts it, after fixing four
    things that would have stopped it. Nobody has run it on a developer's
    machine yet. Production runs its `api` image: Render switched from the Node
@@ -163,8 +168,10 @@ reading list is the only step needed to include it.
 **The product is nujly, in lower case, and so is everything named after it.**
 It was renamed from Nudge on 11 November 2026, and on 17 November the rest
 followed: this repository (`TestNinja007/nujly-test-framework`), the
-application's (`TestNinja007/nujly`), their folders, the CI database (`nujly`,
-role `nujly_app`) and the observability identifiers. The name is written with
+application's (`TestNinja007/nujly`), the CI database (`nujly`, role
+`nujly_app`) and the observability identifiers. The folders in `E:\Project`
+follow when the owner runs the rename script, and keep their old names until
+then. The name is written with
 a small n even at the start of a sentence. The application's `CLAUDE.md` lists
 what still says alarm-configurator, and why.
 
